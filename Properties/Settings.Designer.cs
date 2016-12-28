@@ -61,7 +61,7 @@ namespace Caffeinated.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0,5,10,15,30,60,180,300")]
+        [global::System.Configuration.DefaultSettingValueAttribute("-1,0,5,10,15,30,60,180,300")]
         public string Durations {
             get {
                 return ((string)(this["Durations"]));
@@ -80,6 +80,18 @@ namespace Caffeinated.Properties {
             }
             set {
                 this["KeepMonitorOn"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("iTunes\r\ngit-bash")]
+        public string AutoAppList {
+            get {
+                return ((string)(this["AutoAppList"]));
+            }
+            set {
+                this["AutoAppList"] = value;
             }
         }
     }

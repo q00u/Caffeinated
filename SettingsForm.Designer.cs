@@ -1,4 +1,6 @@
-﻿namespace Caffeinated {
+﻿using System;
+
+namespace Caffeinated {
     partial class SettingsForm {
         /// <summary>
         /// Required designer variable.
@@ -32,6 +34,8 @@
             this.okBtn = new System.Windows.Forms.Button();
             this.cancelBtn = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.autoAppsTextBox = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.monitorOnChkBox = new System.Windows.Forms.CheckBox();
             this.SettingsAtLaunchChkBox = new System.Windows.Forms.CheckBox();
             this.ActivateChkBox = new System.Windows.Forms.CheckBox();
@@ -60,16 +64,16 @@
             // DefaultDurationBox
             // 
             this.DefaultDurationBox.FormattingEnabled = true;
-            this.DefaultDurationBox.Location = new System.Drawing.Point(229, 219);
+            this.DefaultDurationBox.Location = new System.Drawing.Point(229, 304);
             this.DefaultDurationBox.Name = "DefaultDurationBox";
-            this.DefaultDurationBox.Size = new System.Drawing.Size(140, 23);
-            this.DefaultDurationBox.TabIndex = 5;
+            this.DefaultDurationBox.Size = new System.Drawing.Size(215, 23);
+            this.DefaultDurationBox.TabIndex = 8;
             this.DefaultDurationBox.SelectedIndexChanged += new System.EventHandler(this.DefaultDurationBox_SelectedIndexChanged);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(127, 222);
+            this.label3.Location = new System.Drawing.Point(127, 307);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(96, 15);
             this.label3.TabIndex = 6;
@@ -89,10 +93,10 @@
             // okBtn
             // 
             this.okBtn.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.okBtn.Location = new System.Drawing.Point(263, 248);
+            this.okBtn.Location = new System.Drawing.Point(263, 333);
             this.okBtn.Name = "okBtn";
             this.okBtn.Size = new System.Drawing.Size(87, 27);
-            this.okBtn.TabIndex = 8;
+            this.okBtn.TabIndex = 100;
             this.okBtn.Text = "Ok";
             this.okBtn.UseVisualStyleBackColor = true;
             this.okBtn.Click += new System.EventHandler(this.okBtn_Click);
@@ -101,10 +105,10 @@
             // 
             this.cancelBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cancelBtn.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.cancelBtn.Location = new System.Drawing.Point(357, 248);
+            this.cancelBtn.Location = new System.Drawing.Point(357, 333);
             this.cancelBtn.Name = "cancelBtn";
             this.cancelBtn.Size = new System.Drawing.Size(87, 27);
-            this.cancelBtn.TabIndex = 9;
+            this.cancelBtn.TabIndex = 101;
             this.cancelBtn.Text = "Cancel";
             this.cancelBtn.UseVisualStyleBackColor = true;
             this.cancelBtn.Click += new System.EventHandler(this.cancelBtn_Click);
@@ -118,6 +122,25 @@
             this.pictureBox1.TabIndex = 10;
             this.pictureBox1.TabStop = false;
             // 
+            // autoAppsTextBox
+            // 
+            this.autoAppsTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::Caffeinated.Properties.Settings.Default, "AutoAppList", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.autoAppsTextBox.Location = new System.Drawing.Point(229, 245);
+            this.autoAppsTextBox.Multiline = true;
+            this.autoAppsTextBox.Name = "autoAppsTextBox";
+            this.autoAppsTextBox.Size = new System.Drawing.Size(215, 53);
+            this.autoAppsTextBox.TabIndex = 7;
+            this.autoAppsTextBox.Text = global::Caffeinated.Properties.Settings.Default.AutoAppList;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(127, 248);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(101, 15);
+            this.label4.TabIndex = 14;
+            this.label4.Text = "Auto App Names:";
+            // 
             // monitorOnChkBox
             // 
             this.monitorOnChkBox.AutoSize = true;
@@ -127,7 +150,7 @@
             this.monitorOnChkBox.Location = new System.Drawing.Point(130, 169);
             this.monitorOnChkBox.Name = "monitorOnChkBox";
             this.monitorOnChkBox.Size = new System.Drawing.Size(115, 19);
-            this.monitorOnChkBox.TabIndex = 11;
+            this.monitorOnChkBox.TabIndex = 4;
             this.monitorOnChkBox.Text = "Keep monitor on";
             this.monitorOnChkBox.UseVisualStyleBackColor = true;
             // 
@@ -140,7 +163,7 @@
             this.SettingsAtLaunchChkBox.Location = new System.Drawing.Point(130, 194);
             this.SettingsAtLaunchChkBox.Name = "SettingsAtLaunchChkBox";
             this.SettingsAtLaunchChkBox.Size = new System.Drawing.Size(196, 19);
-            this.SettingsAtLaunchChkBox.TabIndex = 4;
+            this.SettingsAtLaunchChkBox.TabIndex = 5;
             this.SettingsAtLaunchChkBox.Text = "Show this message upon launch";
             this.SettingsAtLaunchChkBox.UseVisualStyleBackColor = true;
             // 
@@ -162,7 +185,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelBtn;
-            this.ClientSize = new System.Drawing.Size(456, 286);
+            this.ClientSize = new System.Drawing.Size(456, 374);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.autoAppsTextBox);
             this.Controls.Add(this.monitorOnChkBox);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.cancelBtn);
@@ -198,5 +223,7 @@
         private System.Windows.Forms.Button cancelBtn;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.CheckBox monitorOnChkBox;
+        private System.Windows.Forms.TextBox autoAppsTextBox;
+        private System.Windows.Forms.Label label4;
     }
 }

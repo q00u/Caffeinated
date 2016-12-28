@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
@@ -17,6 +18,9 @@ namespace Caffeinated {
         }
 
         public static string ToDescription(int time) {
+            if (time == -1) {
+                return "Auto (App list)";
+            }
             if (time == 0) {
                 return "Indefinitely";
             }
@@ -50,6 +54,7 @@ namespace Caffeinated {
         private Icon onIcon;
         private Icon offIcon;
         private Timer timer;
+        private Timer autoTimer;
         private SettingsForm settingsForm = null;
         private AboutForm aboutForm = null;
 
@@ -60,9 +65,15 @@ namespace Caffeinated {
         }
 
         public AppContext() {
+
             this.components = new Container();
             this.timer = new Timer(components);
             timer.Tick += new EventHandler(timer_Tick);
+
+            this.autoTimer = new Timer(components);
+            autoTimer.Tick += new EventHandler(autoTimer_Tick);
+            autoTimer.Interval = 1 * 60 * 1000; // Check every minute.
+            autoTimer.Start();
 
             var contextMenu = new ContextMenu();
 
@@ -104,11 +115,11 @@ namespace Caffeinated {
             );
 
             this.offIcon = new Icon(
-                Properties.Resources.cup_coffee_icon_bw,
+                Properties.Resources.sleeping_icon,
                 SystemInformation.SmallIconSize
             );
             this.onIcon = new Icon(
-                Properties.Resources.cup_coffee_icon,
+                Properties.Resources.alarm_clock_icon,
                 SystemInformation.SmallIconSize
             );
             this.notifyIcon = new NotifyIcon(this.components);
@@ -151,8 +162,32 @@ namespace Caffeinated {
             deactivate();
         }
 
+        void autoTimer_Tick(object sender, EventArgs e) {
+            if (isAutoAppRunning()) {
+                activate(-1);
+            }
+            else {
+                deactivate();
+            }
+        }
+
+        bool isAutoAppRunning() {
+            HashSet<String> appSet = new HashSet<String>(Settings.Default.AutoAppList.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries));
+            Process[] processlist = Process.GetProcesses();
+            foreach (Process theprocess in processlist) {
+                if (appSet.Contains(theprocess.ProcessName)) return true;
+            }
+            return false;
+        }
+
         void item_Click(object sender, EventArgs e) {
             int time = (int)((MenuItem)sender).Tag;
+            if (time == -1) {
+                autoTimer_Tick(null, null);
+                autoTimer.Start();
+                return;
+            }
+            autoTimer.Stop();
             this.activate(time);
         }
 

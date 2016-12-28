@@ -12,10 +12,14 @@
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="Durations" Type="System.String" Scope="User">
-      <Value Profile="(Default)">0,5,10,15,30,60,180,300</Value>
+      <Value Profile="(Default)">-1,0,5,10,15,30,60,180,300</Value>
     </Setting>
     <Setting Name="KeepMonitorOn" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="AutoAppList" Type="System.String" Scope="User">
+      <Value Profile="(Default)">iTunes
+git-bash</Value>
     </Setting>
   </Settings>
 </SettingsFile>
