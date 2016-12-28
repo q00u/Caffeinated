@@ -46,6 +46,7 @@ namespace Caffeinated {
         public const uint ES_CONTINUOUS = 0x80000000;
         public const uint ES_SYSTEM_REQUIRED = 0x00000001;
         public const uint ES_DISPLAY_REQUIRED = 0x00000002;
+        public const uint ES_AWAYMODE_REQUIRED = 0x00000040;
     }
 
     public class AppContext : ApplicationContext {
@@ -74,7 +75,7 @@ namespace Caffeinated {
 
             this.autoTimer = new Timer(components);
             autoTimer.Tick += new EventHandler(autoTimer_Tick);
-            autoTimer.Interval = 1 * 60 * 1000; // Check every minute.
+            autoTimer.Interval = 1 * 10 * 1000; // Check every 10 seconds.
 
             var contextMenu = new ContextMenu();
 
@@ -221,8 +222,9 @@ namespace Caffeinated {
         }
 
         void activate(int duration) {
-            var sleepDisabled = NativeMethods.ES_CONTINUOUS |
-                                NativeMethods.ES_SYSTEM_REQUIRED;
+            uint sleepDisabled = NativeMethods.ES_CONTINUOUS |
+                                NativeMethods.ES_SYSTEM_REQUIRED |
+                                NativeMethods.ES_AWAYMODE_REQUIRED;
 
             if (Settings.Default.KeepMonitorOn) {
                 sleepDisabled |= NativeMethods.ES_DISPLAY_REQUIRED;
