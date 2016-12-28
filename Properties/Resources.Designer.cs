@@ -63,16 +63,6 @@ namespace Caffeinated.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon alarm_clock_icon {
-            get {
-                object obj = ResourceManager.GetObject("alarm_clock_icon", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
-        /// </summary>
         internal static System.Drawing.Icon cup_coffee_icon {
             get {
                 object obj = ResourceManager.GetObject("cup_coffee_icon", resourceCulture);
@@ -113,9 +103,39 @@ namespace Caffeinated.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon sleeping_icon {
+        internal static System.Drawing.Icon sleeping_icon_blue {
             get {
-                object obj = ResourceManager.GetObject("sleeping_icon", resourceCulture);
+                object obj = ResourceManager.GetObject("sleeping_icon_blue", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon sleeping_icon_white {
+            get {
+                object obj = ResourceManager.GetObject("sleeping_icon_white", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon surprised_icon_blue {
+            get {
+                object obj = ResourceManager.GetObject("surprised_icon_blue", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon surprised_icon_white {
+            get {
+                object obj = ResourceManager.GetObject("surprised_icon_white", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }

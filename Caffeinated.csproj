@@ -106,6 +106,8 @@
     <None Include="Resources\cup-coffee-icon-bw.ico" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\sleeping_icon_blue.ico" />
+    <None Include="Resources\surprised_icon_blue.ico" />
     <None Include="Resources\alarm_clock_icon.ico" />
     <Content Include="Resources\cup-coffee-icon-64.png" />
     <Content Include="Resources\cup-coffee-icon-96.png" />

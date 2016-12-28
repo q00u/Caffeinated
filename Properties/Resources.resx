@@ -118,9 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="alarm_clock_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\alarm-clock-white.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="cup_coffee_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\cup-coffee-icon.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -133,7 +130,16 @@
   <data name="cup_coffee_icon_bw" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\cup-coffee-icon-bw.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="sleeping_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="sleeping_icon_blue" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sleeping-blue.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sleeping_icon_white" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sleeping-white.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="surprised_icon_blue" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\surprised-blue.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="surprised_icon_white" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\surprised-white.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -53,6 +53,8 @@ namespace Caffeinated {
         private IContainer components;
         private Icon onIcon;
         private Icon offIcon;
+        private Icon autoOnIcon;
+        private Icon autoOffIcon;
         private Timer timer;
         private Timer autoTimer;
         private SettingsForm settingsForm = null;
@@ -73,7 +75,6 @@ namespace Caffeinated {
             this.autoTimer = new Timer(components);
             autoTimer.Tick += new EventHandler(autoTimer_Tick);
             autoTimer.Interval = 1 * 60 * 1000; // Check every minute.
-            autoTimer.Start();
 
             var contextMenu = new ContextMenu();
 
@@ -115,11 +116,19 @@ namespace Caffeinated {
             );
 
             this.offIcon = new Icon(
-                Properties.Resources.sleeping_icon,
+                Properties.Resources.sleeping_icon_white,
                 SystemInformation.SmallIconSize
             );
             this.onIcon = new Icon(
-                Properties.Resources.alarm_clock_icon,
+                Properties.Resources.surprised_icon_white,
+                SystemInformation.SmallIconSize
+            );
+            this.autoOffIcon = new Icon(
+                Properties.Resources.sleeping_icon_blue,
+                SystemInformation.SmallIconSize
+            );
+            this.autoOnIcon = new Icon(
+                Properties.Resources.surprised_icon_blue,
                 SystemInformation.SmallIconSize
             );
             this.notifyIcon = new NotifyIcon(this.components);
@@ -137,7 +146,7 @@ namespace Caffeinated {
                 activate(Settings.Default.DefaultDuration);
             }
             else {
-                deactivate();
+                deactivate(false);
             }
             if (Settings.Default.ShowSettingsAtLaunch) {
                 showSettings();
@@ -159,7 +168,7 @@ namespace Caffeinated {
         }
 
         void timer_Tick(object sender, EventArgs e) {
-            deactivate();
+            deactivate(false);
         }
 
         void autoTimer_Tick(object sender, EventArgs e) {
@@ -167,7 +176,7 @@ namespace Caffeinated {
                 activate(-1);
             }
             else {
-                deactivate();
+                deactivate(true);
             }
         }
 
@@ -193,8 +202,8 @@ namespace Caffeinated {
 
         void notifyIcon1_Click(object sender, MouseEventArgs e) {
             if (e.Button != MouseButtons.Left) return;
-            if (this.isActive())
-                this.deactivate();
+            if (this.isActive()) 
+                this.deactivate(false);
             else
                 this.activate(Settings.Default.DefaultDuration);
         }
@@ -208,7 +217,7 @@ namespace Caffeinated {
         }
 
         bool isActive() {
-            return notifyIcon.Icon == onIcon;
+            return (notifyIcon.Icon == onIcon) || (notifyIcon.Icon == autoOnIcon) || (notifyIcon.Icon == autoOffIcon);
         }
 
         void activate(int duration) {
@@ -228,23 +237,39 @@ namespace Caffeinated {
                 this.timer.Interval = duration * 60 * 1000;
                 this.timer.Start();
             }
-            this.notifyIcon.Icon = onIcon;
-            this.notifyIcon.Text = "Caffeinated: sleep not allowed!";
+            if (duration == -1) {
+                if (!autoTimer.Enabled)
+                    autoTimer.Start();
+                this.notifyIcon.Icon = autoOnIcon;
+                this.notifyIcon.Text = "Caffeinated: (auto) sleep not allowed!";
+            }
+            else
+            { 
+                this.notifyIcon.Icon = onIcon;
+                this.notifyIcon.Text = "Caffeinated: sleep not allowed!";
+            }
         }
 
-        private void deactivate()
+        private void deactivate(bool auto)
         {
             timer.Stop();
             uint result = NativeMethods.SetThreadExecutionState(NativeMethods.ES_CONTINUOUS);
             if (result == 0) {
                 ShowError();
             }
-            this.notifyIcon.Icon = offIcon;
-            this.notifyIcon.Text = "Caffeinated: sleep allowed";
+            if (auto) {
+                this.notifyIcon.Icon = autoOffIcon;
+                this.notifyIcon.Text = "Caffeinated: (auto) sleep allowed";
+            }
+            else {
+                autoTimer.Stop();
+                this.notifyIcon.Icon = offIcon;
+                this.notifyIcon.Text = "Caffeinated: sleep allowed";
+            }
         }
 
         private void exitItem_Click(object Sender, EventArgs e) {
-            deactivate();
+            deactivate(false);
             ExitThread();
         }
 
